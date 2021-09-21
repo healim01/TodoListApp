@@ -35,12 +35,12 @@ public class TodoList {
 
 	}
 
-	public void listAll() {
-		System.out.println("\n[To do List]\n");
-		for (TodoItem myitem : list) {
-			System.out.println(myitem.getTitle() + myitem.getDesc());
-		}
-	}
+//	public void listAll() {
+//		System.out.println("\n[To do List]\n");
+//		for (TodoItem myitem : list) {
+//			System.out.println(myitem.getTitle() + myitem.getDesc());
+//		}
+//	}
 	
 	public void reverseList() {
 		Collections.reverse(list);
