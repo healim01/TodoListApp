@@ -1,5 +1,6 @@
 package com.todo;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.todo.dao.TodoList;
@@ -14,12 +15,14 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
+		TodoUtil.loadList(l, "todolist.txt");
+		Menu.displaymenu();
 		do {
-			Menu.displaymenu();
 			isList = false;
+			Menu.prompt();
 			String choice = sc.next();
 			switch (choice) {
-
+			
 			case "add":
 				TodoUtil.createItem(l);
 				break;
@@ -55,13 +58,18 @@ public class TodoMain {
 			case "exit":
 				quit = true;
 				break;
+			
+			case "help":
+				Menu.displaymenu();
+				break;
 
 			default:
-				System.out.println("please enter one of the above mentioned command");
+				System.out.println("명령어가 존재하지 않습니다. (도움말 - help)");
 				break;
 			}
 			
 			if(isList) l.listAll();
 		} while (!quit);
+		TodoUtil.saveList(l, "todolist.txt");
 	}
 }
