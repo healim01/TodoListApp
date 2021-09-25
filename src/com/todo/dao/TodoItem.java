@@ -4,23 +4,37 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class TodoItem {
+	private String cate;
     private String title;
     private String desc;
+    private String deadline;
     private String date;
 
 
-    public TodoItem(String title, String desc){
+    public TodoItem(String cate, String title, String desc, String deadline){
+    	this.cate=cate;
         this.title=title;
         this.desc=desc;
+        this.deadline=deadline;
         Date d = new Date();
         SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         this.date=form.format(d);
     }
     
-    public TodoItem(String title, String desc, String date){
+    public TodoItem(String cate, String title, String desc, String deadline, String date){
+    	this.cate=cate;
         this.title=title;
         this.desc=desc;
+        this.deadline=deadline;
         this.date=date;
+    }
+    
+    public String getCate() {
+    	return cate;
+    }
+    
+    public void setCate(String cate) {
+    	this.cate = cate;
     }
     
     public String getTitle() {
@@ -38,6 +52,14 @@ public class TodoItem {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+    
+    public String getDeadline() {
+    	return deadline;
+    }
+    
+    public void setDeadline(String deadline) {
+    	this.deadline = deadline;
+    }
 
     public String getCurrent_date() {
         return date;
@@ -48,10 +70,10 @@ public class TodoItem {
     }
     
     public String toString() {
-    	return "[" + title + "] " + desc +  " - " + date;
+    	return "[" + cate + "] " + title + " - " + desc +  " - " + deadline + " - " + date;
     }
     
     public String toSaveString() {
-    	return title + "##" + desc + "##" + date + "\n";
+    	return cate + "##" + title + "##" + desc + "##" + deadline + "##" + date + "\n";
     }
 }

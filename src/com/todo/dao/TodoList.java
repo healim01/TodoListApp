@@ -34,13 +34,38 @@ public class TodoList {
 		Collections.sort(list, new TodoSortByName());
 
 	}
-
-//	public void listAll() {
-//		System.out.println("\n[To do List]\n");
-//		for (TodoItem myitem : list) {
-//			System.out.println(myitem.getTitle() + myitem.getDesc());
-//		}
-//	}
+	
+	public void find(String word) {
+		int count=0, num=0;
+		for (TodoItem item : list) {
+			int con = 0;
+			count++;
+			if (item.getTitle().contains(word)) con = 1;
+			else if (item.getDesc().contains(word)) con = 1;
+			
+			if (con == 1) {
+				item(count);
+				num++;
+			}
+		}
+		
+		if (num == 0) System.out.println("해당 항목이 없습니다.");
+		else System.out.println("총 " + num + "개의 항목을 찾았습니다.");
+	}
+	
+	public void find_cate(String cate) {
+		int count=0, num=0;
+		for (TodoItem item : list) {
+			count++;
+			if (item.getCate().contains(cate)) {
+				item(count);
+				num++;
+			}
+		}
+		
+		if (num == 0) System.out.println("해당 항목이 없습니다.");
+		else System.out.println("총 " + num + "개의 항목을 찾았습니다.");
+	}
 	
 	public void reverseList() {
 		Collections.reverse(list);
@@ -50,8 +75,20 @@ public class TodoList {
 		Collections.sort(list, new TodoSortByDate());
 	}
 
-	public int indexOf(TodoItem t) {
-		return list.indexOf(t);
+	public int indexOf(TodoList l) {
+		return list.indexOf(l);
+	}
+	
+	public int size() {
+		return list.size();
+	}
+	
+	public void item(int n) {
+		int count = 0;
+		for (TodoItem item : list) {
+			count++;
+			if (count == n) System.out.println(n + ". " + item.toString());
+		}
 	}
 
 	public Boolean isDuplicate(String title) {
